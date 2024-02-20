@@ -1,12 +1,15 @@
+import os
 from faster_whisper import WhisperModel
 
 def converter(path_to_file_in_any_format) :
     #TODO
-
-    #just returning the same file for the moment 
-    path_to_file_in_wav_format = path_to_file_in_any_format
-
-    return path_to_file_in_wav_format
+    if path_to_file_in_any_format[-4:] == '.wav':
+        return path_to_file_in_any_format
+    else:
+        print("Converting audio file... /n")
+        new_path = path_to_file_in_any_format[:-4]+'.wav'
+        os.system(f'ffmpeg -i {path_to_file_in_any_format} {new_path} -loglevel "error" ')
+        return new_path
 
 def filter(path_to_noisy_speech_file) :
     #TODO
@@ -71,7 +74,9 @@ def nSTT(path_to_noisy_speech_file) :
 
 def main() :
 
-    nSTT("/home/thomas/projects/tide_hackathon/data/deep_audi_denoiser/Denoised.mp3")
+    input_file = 'nSTT_simiasinus/audio_sample/Noisy_Input.mp3'
+    converter(input_file)
+    #nSTT("/home/thomas/projects/tide_hackathon/data/deep_audi_denoiser/Denoised.mp3")
 
 
 if __name__ == "__main__":

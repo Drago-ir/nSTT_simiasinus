@@ -2,3 +2,4 @@ setuptools
 cython
 av==10.*
 faster_whisper
+tqdm
