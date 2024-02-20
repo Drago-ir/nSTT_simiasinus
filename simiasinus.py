@@ -24,7 +24,27 @@ def STT(path_to_noisy_speech_file) :
 
     print("Detected language '%s' with probability %f" % (info.language, info.language_probability))
 
+    for segment in segments:
+        print("[%.2fs -> %.2fs] %s" % (segment.start, segment.end, segment.text))
 
+    return segments
+
+def diarizer(segments, path_to_denoised_speech_file) :
+
+    #recognizing the different participants
+
+    #TODO
+
+    #just returning original segments for the moment
+    diarized_segments = segments
+
+    return diarized_segments
+
+def organizer(diarized_segments) :
+
+    organized_text = ""
+    
+    return organized_text
 
 def nSTT(path_to_noisy_speech_file) :
 
@@ -35,12 +55,20 @@ def nSTT(path_to_noisy_speech_file) :
     path_to_denoised_speech_file = filter(path_to_noisy_speech_file_in_wav_format)
 
     #provide clean speech to wishper (running on noisy for the moment)
-    STT(path_to_noisy_speech_file)
+    segments = STT(path_to_noisy_speech_file)
+
+    #input the segments into the diarizer
+    diarized_segments = diarizer(segments)
+
+    #organize the output
+    output_text = organizer(diarized_segments)
+
+    return output_text
 
 
 def main() :
 
-    nSTT("/home/thomas/projects/tide_hackathon/data/deep_audi_denoiser/Noisy Input.mp3")
+    nSTT("/home/thomas/projects/tide_hackathon/data/deep_audi_denoiser/Denoised.mp3")
 
 
 if __name__ == "__main__":
