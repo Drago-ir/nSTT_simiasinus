@@ -1,16 +1,18 @@
 from faster_whisper import WhisperModel
 
 def converter(path_to_file_in_any_format) :
-    path_to_file_in_wav_format = ""
-
     #TODO
+
+    #just returning the same file for the moment 
+    path_to_file_in_wav_format = path_to_file_in_any_format
 
     return path_to_file_in_wav_format
 
 def filter(path_to_noisy_speech_file) :
-    path_to_denoised_speech_file = ""
-
     #TODO
+
+    #just returning the same file for the moment
+    path_to_denoised_speech_file = path_to_noisy_speech_file
 
     return path_to_denoised_speech_file
 
@@ -31,10 +33,8 @@ def STT(path_to_noisy_speech_file) :
 
 def diarizer(segments, path_to_denoised_speech_file) :
 
-    #recognizing the different participants
-
     #TODO
-
+    
     #just returning original segments for the moment
     diarized_segments = segments
 
@@ -42,6 +42,9 @@ def diarizer(segments, path_to_denoised_speech_file) :
 
 def organizer(diarized_segments) :
 
+    #TODO
+
+    #just returning original segments for the moment
     organized_text = ""
     
     return organized_text
@@ -55,10 +58,10 @@ def nSTT(path_to_noisy_speech_file) :
     path_to_denoised_speech_file = filter(path_to_noisy_speech_file_in_wav_format)
 
     #provide clean speech to wishper (running on noisy for the moment)
-    segments = STT(path_to_noisy_speech_file)
+    segments = STT(path_to_denoised_speech_file)
 
     #input the segments into the diarizer
-    diarized_segments = diarizer(segments)
+    diarized_segments = diarizer(segments, path_to_denoised_speech_file)
 
     #organize the output
     output_text = organizer(diarized_segments)
