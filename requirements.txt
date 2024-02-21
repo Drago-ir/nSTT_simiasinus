@@ -2,6 +2,13 @@ setuptools
 cython
 av==10.*
 faster_whisper
+tqdm
 tensorflow
 librosa
+scipy
+matplotlib
 pandas
+scikit-learn
+numpy
+soundfile
+IPython
