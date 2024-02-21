@@ -176,17 +176,37 @@ audio_output_prediction):
 
 
 
-sample_rate=8000
-min_duration=1.0  
-frame_length=8064
-hop_length_frame=8064
-hop_length_frame_noise=5000
-nb_samples=500
-n_fft=255
-hop_length_fft=63
-dim_square_spec = int(n_fft / 2) + 1
-weights_path_json = '/home/drago/Coding/TideHackaton/Audio-Denoiser/weight/Best_json_Unet.json'
-weight_h5 = '/home/drago/Coding/TideHackaton/Audio-Denoiser/weight/Best_weight_Unet.h5'
-prediction(weights_path_json, weight_h5,'data/', 'data/', ['test01.wav'], 'un_noise.wav')
+
+
+def main():
+    global sample_rate, min_duration, frame_length, hop_length_frame, hop_length_frame_noise
+    global nb_samples, n_fft, hop_length_fft, dim_square_spec, weights_path_json, weight_h5
+    
+    sample_rate=8000
+    min_duration=1.0  
+    frame_length=8064
+    hop_length_frame=8064
+    hop_length_frame_noise=5000
+    nb_samples=500
+    n_fft=255
+    hop_length_fft=63
+    dim_square_spec = int(n_fft / 2) + 1
+    weights_path_json = '/home/drago/Coding/TideHackaton/Audio-Denoiser/weight/Best_json_Unet.json'
+    weight_h5 = '/home/drago/Coding/TideHackaton/Audio-Denoiser/weight/Best_weight_Unet.h5'
+    #weight_h5 = '/home/drago/Coding/TideHackaton/nSTT_simiasinus/weight/model_unet_best.h5'
+
+    audio_dir = 'audio_sample/'
+    audio_save_dir = 'audio_sample/'
+
+
+    audio_file_name = 'diar.wav'
+    denoised_file_name = audio_file_name.rsplit(".")[0] + '_denoised.wav'
+    prediction(weights_path_json, weight_h5, audio_dir, audio_save_dir, [audio_file_name], denoised_file_name)
+
+
+if __name__ == "__main__":
+    main()
+
+
 
 
