@@ -192,15 +192,17 @@ def main():
     hop_length_fft=63
     dim_square_spec = int(n_fft / 2) + 1
     weights_path_json = '/home/drago/Coding/TideHackaton/Audio-Denoiser/weight/Best_json_Unet.json'
-    weight_h5 = '/home/drago/Coding/TideHackaton/Audio-Denoiser/weight/Best_weight_Unet.h5'
-    #weight_h5 = '/home/drago/Coding/TideHackaton/nSTT_simiasinus/weight/model_unet_best.h5'
+    #weight_h5 = '/home/drago/Coding/TideHackaton/Audio-Denoiser/weight/Best_weight_Unet.h5'
+    weight_h5 = '/home/drago/Coding/TideHackaton/nSTT_simiasinus/weight/epoch3.h5'
 
     audio_dir = 'audio_sample/'
     audio_save_dir = 'audio_sample/'
 
 
+    #audio_file_name = 'Noisy_Input.wav'
+    #audio_file_name = 'Ambiant_noise.wav'
     audio_file_name = 'diar.wav'
-    denoised_file_name = audio_file_name.rsplit(".")[0] + '_denoised.wav'
+    denoised_file_name = audio_file_name.rsplit(".")[0] + '_denoised3.wav'
     prediction(weights_path_json, weight_h5, audio_dir, audio_save_dir, [audio_file_name], denoised_file_name)
 
 
